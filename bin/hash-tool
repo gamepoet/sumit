@@ -8,6 +8,7 @@ const murmurhash = require('murmurhash')
 const program = require('commander')
 const sdbm = require('sdbm')
 const version = require('../package.json').version
+const XXHash = require('xxhash')
 
 function hashInput(algorithm, input, seed) {
   switch (algorithm) {
@@ -53,6 +54,22 @@ function hashInput(algorithm, input, seed) {
     case 'sdbm':
       return sdbm(input)
 
+    case 'xxhash32':
+      if (seed === undefined || seed === null) {
+        return hex2dec.hexToDec(XXHash.hash(Buffer.from(input, 'binary'), 0, 'hex'))
+      }
+      else {
+        return hex2dec.hexToDec(XXHash.hash(Buffer.from(input, 'binary'), seed, 'hex'))
+      }
+
+    case 'xxhash64':
+      if (seed === undefined || seed === null) {
+        return hex2dec.hexToDec(XXHash.hash64(Buffer.from(input, 'binary'), 0, 'hex'))
+      }
+      else {
+        return hex2dec.hexToDec(XXHash.hash64(Buffer.from(input, 'binary'), seed, 'hex'))
+      }
+
     default:
       throw new Error(`unknown algorithm: ${algorithm}`)
   }
@@ -72,12 +89,12 @@ program
   .parse(process.argv)
 
 const algorithm = program.algorithm
-const seed = program.seed
+const seed = program.seed === undefined ? undefined : parseInt(program.seed)
 
 if (program.args.length > 0) {
   program.args.forEach((filename) => {
     const data = fs.readFileSync(filename, 'binary')
-    hashAndPrint(program.algorithm, program.seed, filename, data)
+    hashAndPrint(algorithm, seed, filename, data)
   })
 }
 else {
@@ -90,6 +107,6 @@ else {
   })
   stdin.on('end', function () {
     const data = chunks.join()
-    hashAndPrint(program.algorithm, program.seed, '-', data)
+    hashAndPrint(algorithm, seed, '-', data)
   })
 }

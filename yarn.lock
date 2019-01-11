@@ -216,7 +216,7 @@ murmurhash@^0.0.2:
   resolved "https://registry.yarnpkg.com/murmurhash/-/murmurhash-0.0.2.tgz#6f07bd8a1105e709c26fc89420cb5930c24585fe"
   integrity sha1-bwe9ihEF5wnCb8iUIMtZMMJFhf4=
 
-nan@^2.10.0:
+nan@^2.10.0, nan@^2.4.0:
   version "2.12.1"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.12.1.tgz#7b1aa193e9aa86057e3c7bbd0ac448e770925552"
   integrity sha512-JY7V6lRkStKcKTvHO5NVSQRv+RV+FIL5pvDoLiAtSL9pKlC5x9PKQcZDsq7m4FO4d57mkhC6Z+QhAh3Jdk5JFw==
@@ -473,3 +473,10 @@ xtend@^4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
   integrity sha1-pcbVMr5lbiPbgg77lDofBJmNY68=
+
+xxhash@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/xxhash/-/xxhash-0.2.4.tgz#8b8a48162cfccc21b920fa500261187d40216c39"
+  integrity sha1-i4pIFiz8zCG5IPpQAmEYfUAhbDk=
+  dependencies:
+    nan "^2.4.0"
