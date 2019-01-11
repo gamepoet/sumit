@@ -9,71 +9,59 @@ const program = require('commander')
 const sdbm = require('sdbm')
 const version = require('../package.json').version
 
-function hashInputWithoutSeed(algorithm, input) {
-  switch (algorithm) {
-    case 'djb2a':
-      return djb2a(input)
-
-    case 'fnv1a':
-      return fnv1a(input)
-
-    case 'murmurhash':
-    case 'murmurhash2':
-      return murmurhash.v2(input)
-
-    case 'murmurhash3':
-      return murmurhash.v3(input)
-
-    case 'farmhash32':
-      return farmhash.hash32(input)
-
-    case 'farmhash64':
-      return farmhash.hash64(input)
-
-    case 'sdbm':
-      return sdbm(input)
-
-    default:
-      throw new Error(`unknown algorithm: ${algorithm}`)
-  }
-}
-
-function hashInputWithSeed(algorithm, input, seed) {
-  switch (algorithm) {
-    case 'djb2a':
-      return djb2a(input)
-
-    case 'fnv1a':
-      return fnv1a(input)
-
-    case 'murmurhash':
-    case 'murmurhash2':
-      return murmurhash.v2(input, seed)
-
-    case 'murmurhash3':
-      return murmurhash.v3(input, seed)
-
-    case 'farmhash32':
-      return farmhash.hash32WithSeed(input, seed)
-
-    case 'farmhash64':
-      return farmhash.hash64WithSeed(input, seed)
-
-    case 'sdbm':
-      return sdbm(input)
-
-    default:
-      throw new Error(`unknown algorithm: ${algorithm}`)
-  }
-}
-
 function hashInput(algorithm, input, seed) {
-  if (seed === undefined || seed === null) {
-    return hashInputWithoutSeed(algorithm, input)
+  switch (algorithm) {
+    case 'djb2a':
+      return djb2a(input)
+
+    case 'fnv1a':
+      return fnv1a(input)
+
+    case 'farmhash32':
+      if (seed === undefined || seed === null) {
+        return farmhash.hash32(input)
+      }
+      else {
+        return farmhash.hash32WithSeed(input, seed)
+      }
+
+    case 'farmhash64':
+      if (seed === undefined || seed === null) {
+        return farmhash.hash64(input)
+      }
+      else {
+        return farmhash.hash64WithSeed(input, seed)
+      }
+
+    case 'murmurhash':
+    case 'murmurhash2':
+      if (seed === undefined || seed === null) {
+        return murmurhash.v2(input)
+      }
+      else {
+        return murmurhash.v2(input, seed)
+      }
+
+    case 'murmurhash3':
+      if (seed === undefined || seed === null) {
+        return murmurhash.v3(input)
+      }
+      else {
+        return murmurhash.v3(input, seed)
+      }
+
+    case 'sdbm':
+      return sdbm(input)
+
+    default:
+      throw new Error(`unknown algorithm: ${algorithm}`)
   }
-  else {
-    return hashInputWithSeed(algorithm, input, seed)
-  }
+}
+
+function hashAndPrint(algorithm, seed, filename, data) {
+  const hash = hashInput(algorithm, data, seed)
+  const hashHex = hex2dec.decToHex(hash.toString(), {prefix: false})
+  console.log(`${hashHex}  ${filename}`)
 }
 
 program
@@ -89,11 +77,19 @@ const seed = program.seed
 if (program.args.length > 0) {
   program.args.forEach((filename) => {
     const data = fs.readFileSync(filename, 'binary')
-    const hash = hashInput(program.algorithm, data, program.seed)
-    const hashHex = hex2dec.decToHex(hash.toString(), {prefix: false})
-    console.log(`${hashHex}  ${filename}`)
+    hashAndPrint(program.algorithm, program.seed, filename, data)
   })
 }
 else {
-
+  const stdin = process.stdin
+  const chunks = []
+  stdin.resume()
+  stdin.setEncoding('binary')
+  stdin.on('data', function (chunk) {
+    chunks.push(chunk)
+  })
+  stdin.on('end', function () {
+    const data = chunks.join()
+    hashAndPrint(program.algorithm, program.seed, '-', data)
+  })
 }
