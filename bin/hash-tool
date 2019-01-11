@@ -1,0 +1,78 @@
+#!/usr/bin/env node
+const farmhash = require('farmhash')
+const fs = require('fs')
+const hex2dec = require('hex2dec')
+const murmurhash = require('murmurhash')
+const program = require('commander')
+const version = require('../package.json').version
+
+function hashInputWithoutSeed(algorithm, input) {
+  switch (algorithm) {
+    case 'murmurhash':
+    case 'murmurhash2':
+      return murmurhash.v2(input)
+
+    case 'murmurhash3':
+      return murmurhash.v3(input, seed)
+
+    case 'farmhash32':
+      return farmhash.hash32(input)
+
+    case 'farmhash64':
+      return farmhash.hash64(input)
+
+    default:
+      throw new Error(`unknown algorithm: ${algorithm}`)
+  }
+}
+
+function hashInputWithSeed(algorithm, input, seed) {
+  switch (algorithm) {
+    case 'murmurhash':
+    case 'murmurhash2':
+      return murmurhash.v2(input, seed)
+
+    case 'murmurhash3':
+      return murmurhash.v3(input, seed)
+
+    case 'farmhash32':
+      return farmhash.hash32WithSeed(input, seed)
+
+    case 'farmhash64':
+      return farmhash.hash64WithSeed(input, seed)
+
+    default:
+      throw new Error(`unknown algorithm: ${algorithm}`)
+  }
+}
+
+function hashInput(algorithm, input, seed) {
+  if (seed === undefined || seed === null) {
+    return hashInputWithoutSeed(algorithm, input)
+  }
+  else {
+    return hashInputWithSeed(algorithm, input, seed)
+  }
+}
+
+program
+  .version(version)
+  .usage('[options]')
+  .option('-a, --algorithm [ALGORITHM]', 'the hash algorithm to use')
+  .option('-s, --seed [SEED]', 'the seed to use (if any)')
+  .parse(process.argv)
+
+const algorithm = program.algorithm
+const seed = program.seed
+
+if (program.args.length > 0) {
+  program.args.forEach((filename) => {
+    const data = fs.readFileSync(filename, 'binary')
+    const hash = hashInput(program.algorithm, data, program.seed)
+    const hashHex = hex2dec.decToHex(hash.toString(), {prefix: false})
+    console.log(`${hashHex}  ${filename}`)
+  })
+}
+else {
+
+}

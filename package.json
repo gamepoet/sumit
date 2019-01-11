@@ -1,0 +1,25 @@
+{
+  "name": "hash-tool",
+  "version": "0.0.1",
+  "description": "Command line tool for hashing data.",
+  "repository": "https://github.com/gamepoet/hash-tool",
+  "author": "Ben Scott <gamepoet@gmail.com>",
+  "license": "MIT",
+  "bin": "./bin/hash-tool",
+  "main": "./bin/hash-tool",
+  "keywords": [
+    "hash-tool",
+    "hash",
+    "murmurhash",
+    "murmurhash2",
+    "murmurhash3",
+    "farmhash"
+  ],
+  "devDependencies": {},
+  "dependencies": {
+    "commander": "^2.19.0",
+    "farmhash": "^2.1.0",
+    "hex2dec": "^1.1.1",
+    "murmurhash": "^0.0.2"
+  }
+}

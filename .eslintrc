@@ -1,0 +1,53 @@
+{
+  "parserOptions": {
+    "ecmaVersion": "2018",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "globals": {
+    "Uint8Array": true
+  },
+  "env": {
+    "browser": true
+  },
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "settings": {
+    "react": {
+      "version": "16.5"
+    }
+  },
+  "rules": {
+    "array-callback-return": ["error"],
+    "array-element-newline": ["error", "consistent"],
+    "brace-style": ["error", "stroustrup"],
+    "camelcase": "error",
+    "consistent-return": "error",
+    "default-case": "error",
+    "dot-notation": "error",
+    "eqeqeq": ["error", "always"],
+    "indent": ["error", 2, {"SwitchCase": 1}],
+    "jsx-quotes": ["error", "prefer-single"],
+    "no-console": "off",
+    "no-loop-func": "error",
+    "no-trailing-spaces": "error",
+    "no-unused-vars": ["error", {"args": "none"}],
+    "no-var": "error",
+    "prefer-object-spread": "error",
+    "radix": ["error", "as-needed"],
+    "quotes": ["error", "single"],
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/react-in-jsx-scope": "error",
+    "semi": ["error", "never"],
+    "strict": ["error", "never"]
+  },
+  "plugins": [
+    "react"
+  ]
+}
