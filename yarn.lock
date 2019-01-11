@@ -103,6 +103,11 @@ detect-libc@^1.0.3:
   resolved "https://registry.yarnpkg.com/detect-libc/-/detect-libc-1.0.3.tgz#fa137c4bd698edf55cd5cd02ac559f91a4c4ba9b"
   integrity sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=
 
+djb2a@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/djb2a/-/djb2a-1.0.0.tgz#516c12c51b3f7aad64d604dbd4d588c6623e91c5"
+  integrity sha512-KsqihKd9Fd054umuQln8l8jd5AFELBuyS14YCLhGR/RSSPg4tjf3NCv5MPDWvcNe9x6DTz7XP+Zrd4eyHXND0g==
+
 end-of-stream@^1.0.0, end-of-stream@^1.1.0:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/end-of-stream/-/end-of-stream-1.4.1.tgz#ed29634d19baba463b6ce6b80a37213eab71ec43"

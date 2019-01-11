@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+const djb2a = require('djb2a')
 const farmhash = require('farmhash')
 const fnv1a = require('@sindresorhus/fnv1a');
 const fs = require('fs')
@@ -9,6 +10,9 @@ const version = require('../package.json').version
 
 function hashInputWithoutSeed(algorithm, input) {
   switch (algorithm) {
+    case 'djb2a':
+      return djb2a(input)
+
     case 'fnv1a':
       return fnv1a(input)
 
@@ -32,6 +36,9 @@ function hashInputWithoutSeed(algorithm, input) {
 
 function hashInputWithSeed(algorithm, input, seed) {
   switch (algorithm) {
+    case 'djb2a':
+      return djb2a(input)
+
     case 'fnv1a':
       return fnv1a(input)
 
