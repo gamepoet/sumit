@@ -8,12 +8,19 @@
   "bin": "./bin/hash-tool",
   "main": "./bin/hash-tool",
   "keywords": [
+    "djb2a",
+    "farmhash",
+    "fnv1a",
     "hash-tool",
     "hash",
+    "hashing",
     "murmurhash",
     "murmurhash2",
     "murmurhash3",
-    "farmhash"
+    "sdbm",
+    "xxhash",
+    "xxhash32",
+    "xxhash64"
   ],
   "devDependencies": {},
   "dependencies": {
