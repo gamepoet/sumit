@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const farmhash = require('farmhash')
+const fnv1a = require('@sindresorhus/fnv1a');
 const fs = require('fs')
 const hex2dec = require('hex2dec')
 const murmurhash = require('murmurhash')
@@ -8,12 +9,15 @@ const version = require('../package.json').version
 
 function hashInputWithoutSeed(algorithm, input) {
   switch (algorithm) {
+    case 'fnv1a':
+      return fnv1a(input)
+
     case 'murmurhash':
     case 'murmurhash2':
       return murmurhash.v2(input)
 
     case 'murmurhash3':
-      return murmurhash.v3(input, seed)
+      return murmurhash.v3(input)
 
     case 'farmhash32':
       return farmhash.hash32(input)
@@ -28,6 +32,9 @@ function hashInputWithoutSeed(algorithm, input) {
 
 function hashInputWithSeed(algorithm, input, seed) {
   switch (algorithm) {
+    case 'fnv1a':
+      return fnv1a(input)
+
     case 'murmurhash':
     case 'murmurhash2':
       return murmurhash.v2(input, seed)

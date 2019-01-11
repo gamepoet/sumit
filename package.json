@@ -17,6 +17,7 @@
   ],
   "devDependencies": {},
   "dependencies": {
+    "@sindresorhus/fnv1a": "^1.0.0",
     "commander": "^2.19.0",
     "farmhash": "^2.1.0",
     "hex2dec": "^1.1.1",
