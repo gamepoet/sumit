@@ -157,6 +157,11 @@ has-unicode@^2.0.0:
   resolved "https://registry.yarnpkg.com/has-unicode/-/has-unicode-2.0.1.tgz#e0e6fe6a28cf51138855e086d1691e771de2a8b9"
   integrity sha1-4Ob+aijPUROIVeCG0Wkedx3iqLk=
 
+hash-jenkins@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/hash-jenkins/-/hash-jenkins-1.0.1.tgz#0c39f5d8c7439c79c9b2baa965e415f2649f176d"
+  integrity sha1-DDn12MdDnHnJsrqpZeQV8mSfF20=
+
 hex2dec@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/hex2dec/-/hex2dec-1.1.1.tgz#6d98ddb389e8b3fde7568dc26f93931b240e8fcf"
@@ -188,6 +193,11 @@ isarray@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
   integrity sha1-u5NdSFgsuhaMBoNJV6VKPgcSTxE=
+
+jenkins-hash@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/jenkins-hash/-/jenkins-hash-1.0.1.tgz#d79c4e7d5328e9a6f68462049439052c6e983285"
+  integrity sha1-15xOfVMo6ab2hGIElDkFLG6YMoU=
 
 mimic-response@^1.0.0:
   version "1.0.1"

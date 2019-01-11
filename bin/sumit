@@ -4,6 +4,8 @@ const farmhash = require('farmhash')
 const fnv1a = require('@sindresorhus/fnv1a');
 const fs = require('fs')
 const hex2dec = require('hex2dec')
+const jenkins2 = require('hash-jenkins');
+const jenkins3 = require('jenkins-hash');
 const murmurhash = require('murmurhash')
 const program = require('commander')
 const sdbm = require('sdbm')
@@ -33,6 +35,21 @@ function hashInput(algorithm, input, seed) {
       else {
         return farmhash.hash64WithSeed(input, seed)
       }
+
+    case 'jenkins-oaat':
+      return jenkins2.oaat(input)
+
+    case 'jenkins-lookup2':
+      if (seed === undefined || seed === null) {
+        seed = 0
+      }
+      return jenkins2.lookup2(input, seed)
+
+    case 'jenkins-lookup3':
+      if (seed === undefined || seed === null) {
+        seed = 0
+      }
+      return jenkins3.hashlittle(input, seed)
 
     case 'murmurhash':
     case 'murmurhash2':
