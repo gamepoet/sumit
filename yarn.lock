@@ -335,6 +335,11 @@ safe-buffer@^5.0.1, safe-buffer@^5.1.1, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
   integrity sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==
 
+sdbm@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/sdbm/-/sdbm-1.0.0.tgz#2ff411271779b9d5e3d74105d1f2d085d3dcd344"
+  integrity sha512-29rNjvF5r6FzNsaL6w/UM9Gmw0I4kDlTerQZKHwop1fMKAXWcHxnfLNIX6Z2Zy/jM8s5tJjdx51+CKbfaunFyA==
+
 semver@^5.4.1:
   version "5.6.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.6.0.tgz#7e74256fbaa49c75aa7c7a205cc22799cac80004"

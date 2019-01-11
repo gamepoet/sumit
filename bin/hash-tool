@@ -6,6 +6,7 @@ const fs = require('fs')
 const hex2dec = require('hex2dec')
 const murmurhash = require('murmurhash')
 const program = require('commander')
+const sdbm = require('sdbm')
 const version = require('../package.json').version
 
 function hashInputWithoutSeed(algorithm, input) {
@@ -28,6 +29,9 @@ function hashInputWithoutSeed(algorithm, input) {
 
     case 'farmhash64':
       return farmhash.hash64(input)
+
+    case 'sdbm':
+      return sdbm(input)
 
     default:
       throw new Error(`unknown algorithm: ${algorithm}`)
@@ -54,6 +58,9 @@ function hashInputWithSeed(algorithm, input, seed) {
 
     case 'farmhash64':
       return farmhash.hash64WithSeed(input, seed)
+
+    case 'sdbm':
+      return sdbm(input)
 
     default:
       throw new Error(`unknown algorithm: ${algorithm}`)
