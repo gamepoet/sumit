@@ -9,7 +9,7 @@ const jenkins3 = require('jenkins-hash');
 const murmurhash = require('murmurhash')
 const program = require('commander')
 const sdbm = require('sdbm')
-const version = require('../package.json').version
+const version = require(__dirname + '/../package.json').version
 const XXHash = require('xxhash')
 
 function hashInput(algorithm, input, seed) {
